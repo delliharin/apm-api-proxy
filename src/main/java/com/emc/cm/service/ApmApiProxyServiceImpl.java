@@ -27,11 +27,12 @@ public class ApmApiProxyServiceImpl implements ApmApiProxyService{
         try {
             ApmInstance apmInstance = apmApiProxyRepository.findById(id).orElseThrow(() -> new ProductNotFoundException("Product not found with id " + id));
             System.out.println(apmInstance.getUrl());
-            HttpHeaders headers = new HttpHeaders();
+           /* HttpHeaders headers = new HttpHeaders();
             headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
             HttpEntity<String> entity = new HttpEntity<String>(headers);
 
-            return restTemplate.exchange(apmInstance.getUrl(), HttpMethod.GET, entity, String.class).getBody();
+            return restTemplate.exchange(apmInstance.getUrl(), HttpMethod.GET, entity, String.class).getBody();*/
+            return apmInstance.getUrl();
         } catch(DataAccessException ex) {
             throw new DatabaseAccessException("Error accessing the database");
         }
